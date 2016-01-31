@@ -21,14 +21,24 @@
 
     core.config(configure);
 
-    configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
+    configure.$inject = [
+        '$logProvider',
+        'routerHelperProvider',
+        'exceptionHandlerProvider',
+        'RestangularProvider'];
     /* @ngInject */
-    function configure($logProvider, routerHelperProvider, exceptionHandlerProvider) {
+    function configure(
+        $logProvider,
+        routerHelperProvider,
+        exceptionHandlerProvider,
+        RestangularProvider) {
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
         exceptionHandlerProvider.configure(config.appErrorPrefix);
         routerHelperProvider.configure({docTitle: config.appTitle + ': '});
+
+        RestangularProvider.setBaseUrl('/api');
     }
 
 })();

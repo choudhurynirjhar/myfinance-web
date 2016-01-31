@@ -1,7 +1,7 @@
 <section id="dashboard-view" class="mainbar">
     <section class="matter">
         <div class="container">
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-12">
                     <ul class="today-datas">
                         <li class="blightblue">
@@ -22,13 +22,13 @@
 
                     </ul>
                 </div>
-            </div>
+            </div>-->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="widget wviolet">
-                        <div ht-widget-header title="Expenses"
-                             allow-collapse="true"></div>
+                    <div class="widget wgreen">
+                        <div ht-widget-header title="Expenses" allow-collapse="true"></div>
                         <div class="widget-content text-center text-info">
+                            <div class="glyphicon glyphicon-plus float-right cursor-pointer"></div>
                             <table class="table table-condensed table-striped">
                                 <thead>
                                     <tr>
@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="p in vm.people">
+                                    <tr ng-repeat="p in vm.expenses">
                                         <td>{{p.item}}</td>
                                         <td>{{p.vendor}}</td>
                                         <td>{{p.price}}</td>
@@ -53,8 +53,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="widget wgreen">
+                <!--<div class="col-md-6">
+                    <div class="widget wviolet">
                         <div ht-widget-header title="{{vm.news.title}}"
                              allow-collapse="true"></div>
                         <div class="widget-content text-center text-info">
@@ -64,7 +64,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>

@@ -5,12 +5,12 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+    DashboardController.$inject = ['dashboardService', 'logger'];
     /* @ngInject */
-    function DashboardController($q, dataservice, logger) {
+    function DashboardController(dashboardService, logger) {
         var vm = this;
         vm.news = {
-            title: 'Daily Planner',
+            title: 'My Personal Finance',
             description: 'Under construction.'
         };
         vm.messageCount = 0;
@@ -20,23 +20,11 @@
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople()];
-            return $q.all(promises).then(function() {
-                logger.info('Activated Dashboard View');
-            });
-        }
-
-        function getMessageCount() {
-            return dataservice.getMessageCount().then(function (data) {
-                vm.messageCount = data;
-                return vm.messageCount;
-            });
-        }
-
-        function getPeople() {
-            return dataservice.getPeople().then(function (data) {
-                vm.people = data;
-                return vm.people;
+            return dashboardService.getExpenses(function (data) {
+                vm.expenses = data;
+                return vm.expenses;
+            }, function(error) {
+                logger.error(error);
             });
         }
     }

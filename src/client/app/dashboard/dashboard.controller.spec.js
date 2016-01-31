@@ -5,11 +5,12 @@ describe('DashboardController', function() {
 
     beforeEach(function() {
         bard.appModule('app.dashboard');
-        bard.inject('$controller', '$log', '$q', '$rootScope', 'dataservice');
+        bard.inject('$controller', '$log', '$rootScope', 'dashboardService');
     });
 
     beforeEach(function () {
-        sinon.stub(dataservice, 'getPeople').returns($q.when(people));
+        sinon.stub(dashboardService);
+        dashboardService.getExpenses.callsArgWith(0,people);
         controller = $controller('DashboardController');
         $rootScope.$apply();
     });
@@ -26,20 +27,8 @@ describe('DashboardController', function() {
                 expect(controller.title).to.equal('Dashboard');
             });
 
-            it('should have logged "Activated"', function() {
-                expect($log.info.logs).to.match(/Activated/);
-            });
-
             it('should have news', function () {
                 expect(controller.news).to.not.be.empty;
-            });
-
-            it('should have at least 1 person', function () {
-                expect(controller.people).to.have.length.above(0);
-            });
-
-            it('should have people count of 5', function () {
-                expect(controller.people).to.have.length(7);
             });
         });
     });
