@@ -17,6 +17,10 @@
         vm.people = [];
         vm.title = 'Dashboard';
 
+        vm.createExpense = function() {
+            logger.info('create expense');
+        };
+
         activate();
 
         function activate() {

@@ -15,7 +15,7 @@
         return service;
 
         function getExpenses(success, fail) {
-            Restangular.all('expenses')
+            Restangular.all('expense')
                 .getList()
                 .then(success, fail);
         }
